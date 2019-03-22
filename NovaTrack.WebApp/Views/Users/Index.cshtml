@@ -1,0 +1,56 @@
+﻿@using NovaTrack.WebApp.ViewModels
+@model UsersIndexVM
+@{
+    ViewData["Title"] = "Index";
+
+    Dictionary<string, string> messgaes = new Dictionary<string, string> { { "USER_SAVED", "User is saved." } };
+}
+
+
+<h1>Users</h1>
+<hr />
+@if (Model.Message != null)
+{
+    <p class="alert-success" style="padding:16px;">@messgaes[ Model.Message]</p>
+    <hr />
+}
+<a class="btn btn-primary" href="@Url.Action("Edit")">New User</a>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th>
+                        Is Active
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Users)
+                {
+                    <tr>
+                        <td>@item.Email</td>
+                        <td>@item.FullName</td>
+                        <td>@string.Join(", ", item.Roles)</td>
+                        <td>@(item.IsActive ? "Active" : "Not Active")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

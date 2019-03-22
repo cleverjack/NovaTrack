@@ -1,0 +1,126 @@
+﻿@model NovaTrack.WebApp.Models.Job
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="row">
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Premise)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Premise)
+            @if (Model.OtherPremise != null)
+            {
+                <text>-</text> @Model.OtherPremise
+            }
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyPhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyPhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AssetBarCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AssetBarCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceBarCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceBarCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AssetType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AssetType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AssetId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AssetId)
+        </dd>
+        <dt class="col-sm-2">
+         Location
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Latitude.HasValue && Model.Longitude.HasValue)
+            {
+                <a target="_blank" href="http://www.google.com/maps/place/@(Model.Latitude),@(Model.Longitude)">Location</a>
+            }
+        </dd>
+
+
+        @if (Model.LocalAssetPhoto != null)
+        {
+            <dt class="col-sm-2">
+                Asset Picture
+            </dt>
+
+            <dd class="col-sm-10">
+                <img src="https://nova.blob.core.windows.net/uploads/asset-@(Model.Id).jpg" />
+            </dd>
+        }
+        @if (Model.LocalDevicePhoto != null)
+        {
+            <dt class="col-sm-2">
+                Device Picture
+            </dt>
+
+
+            <dd class="col-sm-10">
+                <img src="https://nova.blob.core.windows.net/uploads/device-@(Model.Id).jpg" />
+
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

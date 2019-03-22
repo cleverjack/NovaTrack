@@ -1,0 +1,94 @@
+﻿@model NovaTrack.WebApp.Models.Job
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Job</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="JobType" class="control-label"></label>
+                <select asp-for="JobType" class="form-control"></select>
+                <span asp-validation-for="JobType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label"></label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Premise" class="control-label"></label>
+                <input asp-for="Premise" class="form-control" />
+                <span asp-validation-for="Premise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OtherPremise" class="control-label"></label>
+                <input asp-for="OtherPremise" class="form-control" />
+                <span asp-validation-for="OtherPremise" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyAddress" class="control-label"></label>
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyPhoneNumber" class="control-label"></label>
+                <input asp-for="CompanyPhoneNumber" class="form-control" />
+                <span asp-validation-for="CompanyPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetBarCode" class="control-label"></label>
+                <input asp-for="AssetBarCode" class="form-control" />
+                <span asp-validation-for="AssetBarCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceBarCode" class="control-label"></label>
+                <input asp-for="DeviceBarCode" class="form-control" />
+                <span asp-validation-for="DeviceBarCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetType" class="control-label"></label>
+                <input asp-for="AssetType" class="form-control" />
+                <span asp-validation-for="AssetType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceId" class="control-label"></label>
+                <input asp-for="DeviceId" class="form-control" />
+                <span asp-validation-for="DeviceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetId" class="control-label"></label>
+                <input asp-for="AssetId" class="form-control" />
+                <span asp-validation-for="AssetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

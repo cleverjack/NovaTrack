@@ -1,0 +1,75 @@
+﻿@using NovaTrack.WebApp.ViewModels
+@model UsersEditVM
+@{
+    ViewData["Title"] = "Edit";
+
+    var rolesSelectListItemList = new List<SelectListItem> {
+new SelectListItem {Text = "Technician", Value = NovaTrack.WebApp.Claims.TechnicianRoleValue},
+new SelectListItem {Text = "Admin", Value = NovaTrack.WebApp.Claims.AdminRoleValue}
+};
+
+    //var selectRoleList = new SelectList(rolesSelectListItemList, "Value", "Text", Model.Role);
+}
+
+<h1>Edit User</h1>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="UserId" />
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="IsActive">
+
+                    <label asp-for="IsActive" class="form-check-label"></label>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    @if (Model.IsNew)
+                    {<input asp-for="Email" class="form-control" /> }
+                    else
+                    {
+                        @Model.Email
+                    }
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FullName" class="control-label"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label"></label>
+                    <select asp-for="Role" asp-items="rolesSelectListItemList" class="form-control"></select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input type="text" name="Password" class="form-control" />
+
+                    <span asp-validation-for="Password" class="text-danger"></span> 
+                    @if (!Model.IsNew)
+                    {
+                        <small>Leave empty to keep the current password.</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

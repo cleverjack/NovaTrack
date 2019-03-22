@@ -1,0 +1,134 @@
+﻿@model NovaTrack.WebApp.ViewModels.JobsIndexVM
+
+@{
+    ViewData["Title"] = "Jobs";
+
+
+}
+
+<h1>Jobs</h1>
+<hr />
+
+<div class="row">
+    <div class="col-sm-6 filterbox">
+        <form>
+            <div class="form-group row">
+                <label for="from" class="col-sm-2 col-form-label">From</label>
+                <div class="col-sm-10">
+                    <input id="from" class="form-control" asp-for="From" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="from" class="col-sm-2 col-form-label">To</label>
+                <div class="col-sm-10">
+                    <input asp-for="To" id="to" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="from" class="col-sm-2 col-form-label">Technician</label>
+                <div class="col-sm-10">
+                    <select class="form-control" asp-for="UserId" asp-items="@(new SelectList(Model.Technicians,"Id","FullName"))">
+                        <option value="">[ANY]</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter Jobs</button>
+
+        </form>
+    </div>
+    <div class="col-md-4 offset-1">
+        <a class="btn btn-primary" href="@Url.Action("index", "jobs", new { excel = true, Model.From, Model.To, Model.UserId })">Download as Excel</a>
+    </div>
+    <div class="col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Create Date
+                    </th>
+                    <th>
+                        Company Name
+                    </th>
+                    <th>
+                        Premise
+                    </th>
+                    <th>
+                        Asset Barcode
+                    </th>
+                    <th>
+                        Device Barcode
+                    </th>
+                    <th>
+                        Asset Type
+                    </th>
+                    <th>
+                        Device Id
+                    </th>
+                    <th>
+                        Asset Id
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Jobs)
+                {
+                    <tr>
+                        <td>@item.User.FullName</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Premise)   @Html.DisplayFor(modelItem => item.OtherPremise)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetBarCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeviceBarCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeviceId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssetId)
+                        </td>
+                        <td>
+                            @if (item.Latitude.HasValue && item.Longitude.HasValue)
+                            {
+                                <a target="_blank" href="http://www.google.com/maps/place/@(item.Latitude),@(item.Longitude)">Location</a>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+                //$('#from').datepicker({
+                //    uiLibrary: 'bootstrap4'
+                //});
+                //$('#to').datepicker({
+                //    uiLibrary: 'bootstrap4'
+                //});
+    </script>
+}
